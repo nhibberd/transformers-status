@@ -104,7 +104,7 @@ instance MonadTrans (ContinueT x) where
     ContinueT . fmap Continue
 
 
--- | Singal a stop.
+-- | Signal a stop.
 --
 -- * @'runContinueT' 'stop' = 'return' 'Stop'@
 stop :: Applicative m => ContinueT x m a
@@ -112,7 +112,7 @@ stop =
   ContinueT . pure $ Stop
 {-# INLINE stop #-}
 
--- | Singal a failure value @x@.
+-- | Signal a failure value @x@.
 --
 -- * @'runContinueT' ('failure' x) = 'return' ('Failure' x)@
 failure :: Applicative m => x -> ContinueT x m a
@@ -120,7 +120,7 @@ failure =
   ContinueT . pure . Failure
 {-# INLINE failure #-}
 
--- | Singal a continue value @x@.
+-- | Signal a continue value @x@.
 --
 -- * @'runContinueT' ('continue' x) = 'return' ('Continue' x)@
 continue :: Applicative m => a -> ContinueT x m a
